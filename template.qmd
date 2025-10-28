@@ -1,0 +1,160 @@
+---
+title: "Task1"
+author: "richard seidl"
+date: "21/10/2025"
+format:
+  html:
+    embed-resources: true
+editor: source
+---
+
+## Question 1 title
+
+Bratislavský kraj
+
+```{r}
+# code for solving task
+#numeric
+population <- 736385
+area_size <- 2053.0
+average_altitude <- 152.7
+average_income <- 1650.75
+
+#integer
+number_of_municipalities <- 73 
+number_of_districts <- 8 
+population <- 719537
+number_of_universities <- 6
+
+# logical
+has_international_airport <- TRUE
+borders_with_other_country <- TRUE
+
+# character
+region_name <- "Bratislavský_kraj"
+capital_city <- "Bratislava"
+region_type <- "Metropolitný"
+
+```
+
+
+## Question 2 title
+
+Vectors
+
+```{r}
+# code for solving task
+#numeric 
+numeric_vector <- c(population, area_size, average_altitude, average_income, number_of_municipalities, number_of_districts, population, number_of_universities)
+
+#sequence 
+sequence_vector <- seq(from = 20, to = 100, by = 5)
+
+#logical 
+logical_vector <- sample(c(TRUE, FALSE), size = 10, replace = TRUE)
+
+```
+
+
+## Question 3 title
+
+Matrix
+
+```{r}
+# code for solving task
+#numeric 
+matrix_bratislava <- matrix(sample(-50:50, 9, replace = TRUE), nrow = 3, ncol = 3)
+
+#row and column names
+rownames(matrix_bratislava) <- c("Districts", "Municipalities", "Universities")
+colnames(matrix_bratislava) <- c("2023", "2024", "2025")
+
+#logical averages
+row_averages <- rowMeans(matrix_bratislava)
+col_averages <- colMeans(matrix_bratislava)
+
+```
+
+
+## Question 4 title
+
+List
+
+```{r}
+# code for solving task
+#list
+bratislava_list <- list(
+
+#atomic variables
+population = population,
+area_size = area_size,
+average_altitude = average_altitude,
+average_income = average_income,
+number_of_municipalities = number_of_municipalities,
+number_of_districts = number_of_districts,
+number_of_universities = number_of_universities,
+has_international_airport = has_international_airport,
+borders_with_other_country = borders_with_other_country,
+region_name = region_name,
+capital_city = capital_city,
+region_type = region_type,
+
+#vectors
+numeric_vector = numeric_vector,
+sequence_vector = sequence_vector,
+logical_vector = logical_vector,
+
+#matrix
+matrix_bratislava = matrix_bratislava,
+row_averages = row_averages,
+col_averages = col_averages,
+
+#extra element
+description = "Bratislavský kraj je najmenší, ale najrozvinutejší kraj Slovenska, s hlavným mestom Bratislavou a bohatou históriou."
+)
+
+```
+
+
+## Question 5 title
+
+Factor
+
+```{r}
+# code for solving task
+#factor
+development_level <- factor(c("high", "high", "medium", "high", "medium", "high"),
+levels = c("low", "medium", "high"))
+
+```
+
+
+## Question 6 title
+
+Data Frame
+
+```{r}
+# code for solving task
+#data frame
+bratislava_df <- data.frame(
+district_name = c("Bratislava I", "Bratislava II", "Bratislava III",
+"Bratislava IV", "Bratislava V", "Malacky",
+"Pezinok", "Senec"),
+population = c(41000, 83000, 61000, 95000, 64000, 73000, 68000, 72000),
+area_km2 = c(10, 50, 75, 96, 45, 949, 375, 359),
+has_industry = c(TRUE, TRUE, TRUE, TRUE, FALSE, TRUE, FALSE, FALSE)
+)
+
+#rename columns
+colnames(bratislava_df) <- c("District", "Population", "Area_km2", "Has_Industry")
+
+#display structure and summary
+str(bratislava_df)
+summary(bratislava_df)
+
+#add new column derived from others (population density)
+bratislava_df$Density <- bratislava_df$Population / bratislava_df$Area_km2
+
+bratislava_df
+
+```
