@@ -158,3 +158,118 @@ bratislava_df$Density <- bratislava_df$Population / bratislava_df$Area_km2
 bratislava_df
 
 ```
+
+
+
+
+
+
+
+
+## Task 2: Subsetting & Missing Data
+
+### Inicializácia
+```{r}
+# code for solving task
+sequence_vector <- seq(from = 20, to = 100, by = 5)
+logical_vector <- c(TRUE, FALSE, TRUE, TRUE, FALSE, FALSE, TRUE, FALSE, TRUE, FALSE)
+
+bratislava_df <- data.frame(
+  region = c("Bratislava I", "Bratislava II", "Bratislava III", "Bratislava IV", "Bratislava V"),
+  population = c(45000, 95000, 65000, 90000, 80000),
+  area_km2 = c(10, 50, 40, 100, 80),
+  is_habitable = c(TRUE, TRUE, TRUE, TRUE, FALSE),
+  stringsAsFactors = FALSE
+)
+
+universe_list <- list(
+  description = "Bratislavský kraj - hlavný a najmenší kraj Slovenska",
+  numbers = sequence_vector,
+  matrix3x3 = matrix(sample(-50:50, 9, replace = TRUE), nrow = 3),
+  logicals = logical_vector
+)
+```
+
+### 2.1. Querying Vectors
+```{r}
+# code for solving task
+    # 2.1.1. Sequence vector
+        sequence_vector[3]                # 3rd element
+        sequence_vector[2:5]              # elements 2 through 5
+        sequence_vector[sequence_vector > 20]   # values greater than 20
+    
+    # 2.1.2. Logical vector
+        logical_vector[logical_vector]    # only TRUE values
+        which(logical_vector)             # indices of TRUE values
+```
+
+### 2.2. Querying Your "Universe" List
+```{r}
+# code for solving task
+    # using the $ operator
+        universe_list$description
+    
+    # matrix [[ ]]  (access the 3x3 matrix stored in the list)
+        universe_list[["matrix3x3"]]
+    
+    # second element from the vector element within the list
+        universe_list[["numbers"]][2]
+```
+
+### 2.3. Investigating Your Data Frame
+```{r}
+# code for solving task
+    # first 3 rows
+        head(bratislava_df, 3)
+    
+    # 4th row, 1st column
+        bratislava_df[4, 1]
+    
+    # contains logical value column
+        bratislava_df$is_habitable
+```
+
+### 2.4. Handling "Corrupted" Data (NA)
+```{r}
+# code for solving task
+    # copying data
+        df_corrupted <- bratislava_df
+    
+    # introduce 3 NAs
+        df_corrupted[2, 3] <- NA
+        df_corrupted[4, 2] <- NA
+        df_corrupted[5, 4] <- NA
+        
+    # count NA
+        sum(is.na(df_corrupted))
+    
+    # count NA per column
+        colSums(is.na(df_corrupted))
+    
+    # mean of population with NA
+        mean(df_corrupted$population)
+    
+    # mean of population without NA
+    mean(df_corrupted$population, na.rm = TRUE)
+    
+    # remove NA
+    df_clean <- na.omit(df_corrupted)
+    df_clean
+```
+
+### 2.5. Bonus Challenge: which()
+```{r}
+# code for solving task
+    # highest population
+    highest_pop_index <- which.max(bratislava_df$population)
+    bratislava_df[highest_pop_index, ]
+    
+    # lowest area
+    lowest_area_index <- which.min(bratislava_df$area_km2)
+    bratislava_df[lowest_area_index, ]
+```
+
+
+
+
+
